@@ -60,3 +60,8 @@ body {
 .aboutNav:hover::after {
   width: 90%;
 }
+
+.colorNav {
+  display: flex;
+  justify-content: center;
+}
