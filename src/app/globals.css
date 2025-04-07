@@ -65,3 +65,37 @@ body {
   display: flex;
   justify-content: center;
 }
+
+/* COLOR SWATCH */
+
+input[type="color"] {
+  width: 40px;
+  height: 40px;
+
+  border-radius: 5px;
+
+  border: none;
+
+  padding: 0;
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  outline: none;
+  box-shadow: 0 0 0 1px #ddd;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+input[type="color"]::-webkit-color-swatch {
+  border: none;
+  border-radius: 5px;
+}
+
+input[type="color"]::-moz-color-swatch {
+  border: none;
+  border-radius: 5px;
+}
