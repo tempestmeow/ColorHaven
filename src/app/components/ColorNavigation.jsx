@@ -21,23 +21,21 @@ export default function ColorNavigation() {
     setTimeout(() => setCopied(false), 2000);
   };
 
+  const styles = {
+    colorSelector: {
+      backgroundColor: darkMode ? "#0D004D" : "#FFFFFF",
+    },
+  };
+
   return (
     <div className="colorNav">
-      <div
-        className="rectange-tester r1 w-64 h-64 rounded-2xl"
-        style={{ backgroundColor: color }}
-      ></div>
-      <div
-        className="colorSelector flex"
-        style={{ backgroundColor: darkMode ? "#0D004D" : "#FFFFFF" }}
-      >
+      <div className="colorSelector flex" style={styles.colorSelector}>
         <input
           type="color"
           value={color}
           onChange={(e) => setColor(e.target.value)}
           className="selectColor cursor-pointer colorSwatch"
         />
-        <div className="hexDisplay">{color.toUpperCase()}</div>
         <div ckassName="randomColorButton" onClick={generateRandomColor}>
           <Shuffle size={20} className="randomColorIcon" />
         </div>
@@ -48,7 +46,7 @@ export default function ColorNavigation() {
             <Sun size={20} className="darkModeIcon" />
           )}
         </div>
-
+        {/* USE http://colormind.io/api-access/ FOR GENERATING COLOR THEMES */}
         <div className="copyColorButton" onClick={copyToClipboard}>
           <Copy size={20} className="copyColorIcon" />
           {copied && <div className="copyNotification">Copied!</div>}

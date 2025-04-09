@@ -11,7 +11,6 @@ export default function Home() {
         <div className="p1">
           <BlobIllustration />
           <ColorNavigation />
-          <Selection />
         </div>
         <div className="rectangleDiv"></div>
       </div>
