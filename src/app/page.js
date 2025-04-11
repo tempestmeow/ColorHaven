@@ -10,10 +10,9 @@ export default function Home() {
       <div className="MainPage pt-13">
         <div className="p1">
           <BlobIllustration />
-          <ColorNavigation />
         </div>
-        <div className="rectangleDiv"></div>
       </div>
+      <ColorNavigation />
     </div>
   );
 }
