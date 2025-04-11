@@ -245,6 +245,9 @@ export default function ColorNavigation() {
   const adjustColor = (originalHexColor) => {
     const hsl = hexToHSL(originalHexColor);
 
+    const brightScale = 0.4;
+    const satScale = 0.8;
+
     let tempAdjustedHue = hsl.h;
     if (temperatureAdjustment !== 0) {
       tempAdjustedHue = (hsl.h - temperatureAdjustment) % 360;
@@ -254,13 +257,12 @@ export default function ColorNavigation() {
     const newHue = (tempAdjustedHue + hueAdjustment) % 360;
     const newSaturation = Math.max(
       0,
-      Math.min(100, hsl.s + saturationAdjustment)
+      Math.min(100, hsl.s + saturationAdjustment * satScale)
     );
     const newBrightness = Math.max(
       0,
-      Math.min(100, hsl.l + brightnessAdjustment)
+      Math.min(100, hsl.l + brightnessAdjustment * brightScale)
     );
-
     return hslToHex(newHue, newSaturation, newBrightness);
   };
 
