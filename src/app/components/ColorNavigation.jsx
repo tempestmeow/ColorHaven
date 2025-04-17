@@ -330,9 +330,9 @@ export default function ColorNavigation({
   };
 
   return (
-    <div className="colorNav bottom-4 fixed left-1/2 -translate-x-1/2">
+    <div className="colorNav bottom-4 fixed left-1/2 -translate-x-1/2 w-full max-w-[95vw]">
       <div
-        className="colorSelector flex gap-2 items-center transition-colors duration-300"
+        className="colorSelector flex gap-1 sm:gap-2 items-center transition-colors duration-300"
         style={styles.colorSelector}
       >
         <input
@@ -341,7 +341,7 @@ export default function ColorNavigation({
           onChange={(e) =>
             handleColorChange(setTextColor, "text", e.target.value)
           }
-          className="selectColor cursor-pointer colorSwatch"
+          className="selectColor cursor-pointer colorSwatch small-viewport-input"
         />
         <input
           type="color"
@@ -349,7 +349,7 @@ export default function ColorNavigation({
           onChange={(e) =>
             handleColorChange(setBackgroundColor, "background", e.target.value)
           }
-          className="selectColor cursor-pointer colorSwatch"
+          className="selectColor cursor-pointer colorSwatch small-viewport-input"
         />
         <input
           type="color"
@@ -357,7 +357,7 @@ export default function ColorNavigation({
           onChange={(e) =>
             handleColorChange(setPrimaryColor, "primary", e.target.value)
           }
-          className="selectColor cursor-pointer colorSwatch"
+          className="selectColor cursor-pointer colorSwatch small-viewport-input"
         />
         <input
           type="color"
@@ -365,7 +365,7 @@ export default function ColorNavigation({
           onChange={(e) =>
             handleColorChange(setSecondaryColor, "secondary", e.target.value)
           }
-          className="selectColor cursor-pointer colorSwatch"
+          className="selectColor cursor-pointer colorSwatch small-viewport-input"
         />
         <input
           type="color"
@@ -373,35 +373,35 @@ export default function ColorNavigation({
           onChange={(e) =>
             handleColorChange(setAccentColor, "accent", e.target.value)
           }
-          className="selectColor cursor-pointer colorSwatch"
+          className="selectColor cursor-pointer colorSwatch small-viewport-input"
         />
         <div
-          className="randomColorButton cursor-pointer"
+          className="randomColorButton cursor-pointer small-viewport-icon"
           onClick={generateRandomMultipleColors}
         >
-          <Shuffle size={28} className="randomColorIcon" />
+          <Shuffle size={24} className="randomColorIcon" />
         </div>
         <div
-          className="slidersHorizontalButton cursor-pointer"
+          className="slidersHorizontalButton cursor-pointer small-viewport-icon"
           onClick={toggleColorEditor}
         >
-          <SlidersHorizontal size={28} className="slidersHorizontalIcon" />
+          <SlidersHorizontal size={24} className="slidersHorizontalIcon" />
         </div>
         <div
-          className="darkModeButton cursor-pointer"
+          className="darkModeButton cursor-pointer small-viewport-icon"
           onClick={() => setDarkMode(!darkMode)}
         >
           {darkMode ? (
-            <Moon size={28} className="darkModeIcon" />
+            <Moon size={24} className="darkModeIcon" />
           ) : (
-            <Sun size={28} className="darkModeIcon" />
+            <Sun size={24} className="darkModeIcon" />
           )}
         </div>
         <div
-          className="copyColorButton cursor-pointer"
+          className="copyColorButton cursor-pointer small-viewport-icon"
           onClick={copyToClipboard}
         >
-          <Copy size={28} className="copyColorIcon" />
+          <Copy size={24} className="copyColorIcon" />
           {copied && <div style={styles.copyNotification}>Copied!</div>}
         </div>
       </div>
@@ -513,7 +513,7 @@ export default function ColorNavigation({
           <div className="flex justify-center mt-4">
             <button
               onClick={resetAdjustments}
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded small-viewport-button"
               style={{
                 backgroundColor: darkMode ? "#555" : "#3B82F6",
                 color: "#FFF",
@@ -528,6 +528,25 @@ export default function ColorNavigation({
           </div>
         </div>
       )}
+
+      <style jsx>{`
+        @media (max-width: 400px) {
+          .small-viewport-input {
+            width: 30px !important;
+            height: 30px !important;
+          }
+
+          .small-viewport-icon svg {
+            width: 20px !important;
+            height: 20px !important;
+          }
+
+          .small-viewport-button {
+            padding: 4px 8px !important;
+            font-size: 14px !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }

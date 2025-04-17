@@ -16,15 +16,21 @@ export default function Home() {
   return (
     <div className="page flex-col items-center justify-center">
       <Header />
-      <div className="MainPage pt-17 flex justify-center items-center">
-        <div className="p1 flex justify-center items-center">
-          <div className="flex-col">
-            <div className="">Pallete Visualizer</div>
-            <div className="">
-              Play with pigments to match your creative energy.
+      <div className="MainPage mx-12 pt-17 flex justify-center items-center">
+        <div className="p1 flex justify-center items-center ">
+          <div className="p1-texts flex flex-col gap-3">
+            <div className="p1-title flex justify-center items-center text-7xl font-bold">
+              Pallette Visualizer
+            </div>
+            <div className="p1-description text-md font-medium flex justify-center items-center ">
+              Play with pigments to match your creative energy. Export colors as
+              HEX, RGB, or CSS. Import images or SVGs to edit hues live.
             </div>
           </div>
-          <ColorSelectorIllustration primaryColor={primaryColor} />
+          <ColorSelectorIllustration
+            primaryColor={primaryColor}
+            className="flex-shrink-0 h-auto"
+          />
         </div>
       </div>
       <ColorNavigation
