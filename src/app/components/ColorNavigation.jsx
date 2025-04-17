@@ -2,13 +2,19 @@
 import { useState, useRef, useEffect } from "react";
 import { Moon, Sun, Shuffle, Copy, SlidersHorizontal } from "lucide-react";
 
-export default function ColorNavigation() {
+export default function ColorNavigation({
+  textColor,
+  backgroundColor,
+  primaryColor,
+  secondaryColor,
+  accentColor,
+  setTextColor,
+  setBackgroundColor,
+  setPrimaryColor,
+  setSecondaryColor,
+  setAccentColor,
+}) {
   const [darkMode, setDarkMode] = useState(false);
-  const [textColor, setTextColor] = useState("#000000");
-  const [backgroundColor, setBackgroundColor] = useState("#FFFFFF");
-  const [primaryColor, setPrimaryColor] = useState("#3366FF");
-  const [secondaryColor, setSecondaryColor] = useState("#FF6633");
-  const [accentColor, setAccentColor] = useState("#33FF66");
   const [showColorEditor, setShowColorEditor] = useState(false);
   const [hueAdjustment, setHueAdjustment] = useState(0);
   const [saturationAdjustment, setSaturationAdjustment] = useState(0);
@@ -18,7 +24,7 @@ export default function ColorNavigation() {
   const [originalColors, setOriginalColors] = useState({
     text: "#000000",
     background: "#FFFFFF",
-    primary: "#3366FF",
+    primary: "#5314ff",
     secondary: "#FF6633",
     accent: "#33FF66",
   });

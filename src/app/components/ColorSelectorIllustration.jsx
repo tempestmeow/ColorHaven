@@ -1,4 +1,4 @@
-export default function ColorSelectorIllustration() {
+export default function ColorSelectorIllustration({ primaryColor }) {
   return (
     <div className="w-full h-full flex justify-center">
       <svg
@@ -35,7 +35,7 @@ export default function ColorSelectorIllustration() {
             cx="284.19977"
             cy="158.33361"
             r="25.13289"
-            fill="#6c63ff"
+            fill={primaryColor}
             opacity=".2"
           />
           <circle cx="308.3457" cy="169.52001" r="25.13289" fill="#fff" />
@@ -43,7 +43,7 @@ export default function ColorSelectorIllustration() {
             cx="308.3457"
             cy="169.52001"
             r="25.13289"
-            fill="#6c63ff"
+            fill={primaryColor}
             opacity=".5"
           />
           <circle cx="333.83306" cy="181.32788" r="25.13289" fill="#fff" />
@@ -51,10 +51,15 @@ export default function ColorSelectorIllustration() {
             cx="333.83306"
             cy="181.32788"
             r="25.13289"
-            fill="#6c63ff"
+            fill={primaryColor}
             opacity=".8"
           />
-          <circle cx="356.63755" cy="191.89281" r="25.13289" fill="#6c63ff" />
+          <circle
+            cx="356.63755"
+            cy="191.89281"
+            r="25.13289"
+            fill={primaryColor}
+          />
         </g>
         <g>
           <path
@@ -137,7 +142,7 @@ export default function ColorSelectorIllustration() {
         />
         <path
           d="M380.75654,32.78589c2.36542,15.53268,16.92593,26.24454,32.45861,23.87912,15.53268-2.36542,26.24454-16.92593,23.87912-32.45861-2.36542-15.53268-16.92593-26.24454-32.45861-23.87912-15.53268,2.36542-26.24454,16.92593-23.87912,32.45861Z"
-          fill="#6c63ff"
+          fill={primaryColor}
         />
         <path
           id="uuid-d43be532-fa37-4a43-8eed-58df037ae9c1-317"
