@@ -47,8 +47,6 @@ export default function ColorNavigation() {
       colors.push(randomColor);
     }
 
-    setTextColor(colors[0]);
-    setBackgroundColor(colors[1]);
     setPrimaryColor(colors[2]);
     setSecondaryColor(colors[3]);
     setAccentColor(colors[4]);
@@ -246,7 +244,7 @@ export default function ColorNavigation() {
     const hsl = hexToHSL(originalHexColor);
 
     const brightScale = 0.4;
-    const satScale = 0.8;
+    const satScale = 1;
 
     let tempAdjustedHue = hsl.h;
     if (temperatureAdjustment !== 0) {
@@ -254,7 +252,7 @@ export default function ColorNavigation() {
       if (tempAdjustedHue < 0) tempAdjustedHue += 360;
     }
 
-    const newHue = (tempAdjustedHue + hueAdjustment) % 360;
+    const newHue = (tempAdjustedHue + hueAdjustment * 0.5) % 360;
     const newSaturation = Math.max(
       0,
       Math.min(100, hsl.s + saturationAdjustment * satScale)
@@ -328,7 +326,7 @@ export default function ColorNavigation() {
   return (
     <div className="colorNav bottom-4 fixed left-1/2 -translate-x-1/2">
       <div
-        className="colorSelector flex gap-2 items-center"
+        className="colorSelector flex gap-2 items-center transition-colors duration-300"
         style={styles.colorSelector}
       >
         <input

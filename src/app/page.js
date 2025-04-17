@@ -2,7 +2,6 @@ import BlobIllustration from "./components/BlobIllustration";
 import ColorNavigation from "./components/ColorNavigation";
 import ColorSelectorIllustration from "./components/ColorSelectorIllustration";
 import Header from "./components/Header";
-import Selection from "./components/Selection";
 
 export default function Home() {
   return (
