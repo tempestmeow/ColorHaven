@@ -13,8 +13,9 @@ export default function ColorNavigation({
   setPrimaryColor,
   setSecondaryColor,
   setAccentColor,
+  darkMode,
+  setDarkMode,
 }) {
-  const [darkMode, setDarkMode] = useState(false);
   const [showColorEditor, setShowColorEditor] = useState(false);
   const [hueAdjustment, setHueAdjustment] = useState(0);
   const [saturationAdjustment, setSaturationAdjustment] = useState(0);
@@ -22,7 +23,7 @@ export default function ColorNavigation({
   const [temperatureAdjustment, setTemperatureAdjustment] = useState(0);
 
   const [originalColors, setOriginalColors] = useState({
-    text: "#000000",
+    text: "#1e1e2e",
     background: "#FFFFFF",
     primary: "#5314ff",
     secondary: "#FF6633",
@@ -312,10 +313,6 @@ export default function ColorNavigation({
       ...prev,
       [colorKey]: value,
     }));
-
-    setTimeout(() => {
-      updateAllColors();
-    }, 0);
   };
 
   const toggleColorEditor = () => {
@@ -389,7 +386,11 @@ export default function ColorNavigation({
         </div>
         <div
           className="darkModeButton cursor-pointer small-viewport-icon"
-          onClick={() => setDarkMode(!darkMode)}
+          onClick={() => {
+            setDarkMode(!darkMode);
+            setTextColor(darkMode ? "#1e1e2e" : "#FFFFFF");
+            setBackgroundColor(darkMode ? "#FFFFFF" : "#1e1e2e");
+          }}
         >
           {darkMode ? (
             <Moon size={24} className="darkModeIcon" />
