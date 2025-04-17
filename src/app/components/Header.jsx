@@ -3,7 +3,7 @@ import React from "react";
 export default function Header({ style }) {
   return (
     <div
-      className="header flex justify-between w-full fixed items-center bg-white"
+      className="header flex justify-between w-full fixed items-center transition-colors delay-50 "
       style={style}
     >
       <div className="headerIcon">Color Haven</div>

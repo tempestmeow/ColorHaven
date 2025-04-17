@@ -14,16 +14,21 @@ export default function Home() {
   const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
+    document.documentElement.classList.add("transition-colors", "duration-300");
+    document.body.classList.add("transition-colors", "duration-300");
     document.documentElement.style.color = textColor;
     document.documentElement.style.backgroundColor = backgroundColor;
     document.body.style.color = textColor;
     document.body.style.backgroundColor = backgroundColor;
-  }, [textColor, backgroundColor]);
+  }, [darkMode, textColor, backgroundColor]);
 
   const styles = {
     page: {
       color: textColor,
       backgroundColor: backgroundColor,
+      transitionProperty: "background-color, border-color, color, fill, stroke",
+      transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)",
+      transitionDuration: "150ms",
     },
     MainPage: {},
     Header: {
@@ -32,11 +37,10 @@ export default function Home() {
     },
   };
 
+  // i did not use what's above, i realized that i just needed to change the entire html file itself.
+
   return (
-    <div
-      className="page flex-col items-center justify-center"
-      style={styles.page}
-    >
+    <div className="page flex-col items-center justify-center">
       <Header style={styles.Header} />
       <div className="MainPage mx-12 pt-17 flex justify-center items-center">
         <div className="p1 flex justify-center items-center ">
@@ -44,7 +48,6 @@ export default function Home() {
             <div
               className="p1-title flex justify-center items-center text-7xl font-bold 
             "
-              style={styles.page}
             >
               Pallette Visualizer
             </div>
