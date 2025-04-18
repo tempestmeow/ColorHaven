@@ -3,8 +3,8 @@
 import ColorNavigation from "./components/ColorNavigation";
 import ColorSelectorIllustration from "./components/ColorSelectorIllustration";
 import Header from "./components/Header";
-import { useState, useEffect } from "react";
-
+import { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 export default function Home() {
   const [textColor, setTextColor] = useState("#1e1e2e");
   const [backgroundColor, setBackgroundColor] = useState("#FFFFFF");
@@ -12,6 +12,8 @@ export default function Home() {
   const [secondaryColor, setSecondaryColor] = useState("#FF6633");
   const [accentColor, setAccentColor] = useState("#33FF66");
   const [darkMode, setDarkMode] = useState(false);
+  const router = useRouter();
+  const fileInputRef = useRef(null);
 
   useEffect(() => {
     document.documentElement.classList.add("transition-colors", "duration-300");
@@ -42,8 +44,8 @@ export default function Home() {
   return (
     <div className="page flex-col items-center justify-center">
       <Header style={styles.Header} />
-      <div className="MainPage mx-12 pt-17 flex justify-center items-center">
-        <div className="p1 flex justify-center items-center ">
+      <div className="MainPage mx-12 pt-17 flex justify-center items-center flex-col">
+        <div className="p1 flex justify-center items-center min-h-full">
           <div className="p1-texts flex flex-col gap-3">
             <div
               className="p1-title flex justify-center items-center text-7xl font-bold 
@@ -61,6 +63,27 @@ export default function Home() {
             className="flex-shrink-0 h-auto"
           />
         </div>
+        <div className="p2">
+          <div
+            className="insert-svg"
+            onClick={() => fileInputRef.current.click()}
+          >
+            Insert svg
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept=".svg"
+              className="hidden"
+            />
+          </div>
+        </div>
+        <div className="p2">sds</div>
+        <div className="p2">sds</div>
+        <div className="p2">sds</div>
+        <div className="p2">sds</div>
+        <div className="p2">sds</div>
+        <div className="p2">sds</div>
+        <div className="p2">sds</div>
       </div>
       <ColorNavigation
         textColor={textColor}

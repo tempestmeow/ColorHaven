@@ -514,9 +514,9 @@ export default function ColorNavigation({
           <div className="flex justify-center mt-4">
             <button
               onClick={resetAdjustments}
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded small-viewport-button"
+              className="text-white font-bold py-2 px-4 rounded small-viewport-button"
               style={{
-                backgroundColor: darkMode ? "#555" : "#3B82F6",
+                backgroundColor: darkMode ? "#555" : "#272730",
                 color: "#FFF",
                 padding: "6px 12px",
                 borderRadius: "4px",
