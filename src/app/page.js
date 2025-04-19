@@ -220,38 +220,63 @@ export default function Home() {
             className="flex-shrink-0 h-auto"
           />
         </div>
-        <div className="p2">
-          <div
-            className="insert-svg cursor-pointer"
-            onClick={() => fileInputRef.current.click()}
-          >
-            Insert svg
-            <input
-              ref={fileInputRef}
-              type="file"
-              accept=".svg"
-              className="hidden"
-              onChange={handleFileChange}
-            />
-          </div>
-          {colors.length === 0 ? null : (
-            <div className="grid grid-cols-5 gap-2 bg-gray-50 rounded-2xl p-2">
-              {colors.map((colorObj, index) => (
-                <div
-                  key={index}
-                  className="flex items-center justify-center p-2"
-                >
-                  <input
-                    type="color"
-                    value={colorObj.newColor}
-                    onChange={(e) => handleColorChange(index, e.target.value)}
-                    className="w-6 h-6 rounded-full cursor-pointer"
-                  />
-                </div>
-              ))}
+        <div className="p2 flex w-[100%] pt-[5rem]">
+          <div className="flex flex-col">
+            <div
+              className="p1-title flex items-center text-4xl font-bold 
+            "
+            >
+              SVG Color Editor
             </div>
-          )}
+            <div className="flex">
+              <div className="flex flex-col">
+                <h2 className="flex">
+                  <Upload size={20} className="mr-2" />
+                  Upload svg
+                </h2>
+                <div className="flex gap-[.5rem] items-center text-[.85rem]">
+                  <div
+                    className="insert-svg cursor-pointer bg-[#1E1E2E] w-[7rem] py-1 rounded-xl text-white flex justify-center items-center"
+                    onClick={() => fileInputRef.current.click()}
+                  >
+                    Insert Here
+                    <input
+                      ref={fileInputRef}
+                      type="file"
+                      accept=".svg"
+                      className="hidden"
+                      onChange={handleFileChange}
+                    />
+                  </div>
+                  <span className="text-gray-400 ">{fileName}</span>
+                </div>
+                {colors.length === 0 ? null : (
+                  <div className="grid grid-cols-5 gap-2 bg-gray-50 rounded-2xl p-2">
+                    {colors.map((colorObj, index) => (
+                      <div
+                        key={index}
+                        className="flex items-center justify-center p-2"
+                      >
+                        <input
+                          type="color"
+                          value={colorObj.newColor}
+                          onChange={(e) =>
+                            handleColorChange(index, e.target.value)
+                          }
+                          className="w-6 h-6 rounded-full cursor-pointer"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+              <div className="border border-gray-200 rounded p-4 bg-gray-50 flex items-center justify-center h-[400px] w-[500px] overflow-hidden">
+                <div dangerouslySetInnerHTML={{ __html: previewSvg }} />
+              </div>
+            </div>
+          </div>
         </div>
+
         <div className="p2">sds</div>
         <div className="p2">sds</div>
         <div className="p2">sds</div>
