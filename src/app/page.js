@@ -14,6 +14,21 @@ export default function Home() {
   const [darkMode, setDarkMode] = useState(false);
   const router = useRouter();
   const fileInputRef = useRef(null);
+  const [fileName, setFileName] = useState("");
+  const [svgContent, setSvgContent] = useState("");
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    setFileName(file.name);
+    const reader = new FileReader();
+
+    reader.onload = (event) => {
+      setSvgContent(event.target.result);
+    };
+
+    reader.readAsText(file);
+  };
 
   useEffect(() => {
     document.documentElement.classList.add("transition-colors", "duration-300");
@@ -65,7 +80,7 @@ export default function Home() {
         </div>
         <div className="p2">
           <div
-            className="insert-svg"
+            className="insert-svg cursor-pointer"
             onClick={() => fileInputRef.current.click()}
           >
             Insert svg
@@ -74,6 +89,7 @@ export default function Home() {
               type="file"
               accept=".svg"
               className="hidden"
+              onChange={handleFileChange}
             />
           </div>
         </div>
