@@ -211,8 +211,8 @@ export default function Home() {
   return (
     <div className="page flex-col items-center justify-center">
       <Header style={styles.Header} />
-      <div className="MainPage pt-17 flex justify-center items-center flex-col">
-        <div className="p1 w-[100%] px-12 flex justify-center items-center min-h-full">
+      <div className="MainPage pt-15 flex justify-center items-center flex-col">
+        <div className="p1 w-[100%] px-[7rem] flex justify-center items-center min-h-full">
           <div className="p1-texts flex flex-col gap-3">
             <div
               className="p1-title flex justify-center items-center text-7xl font-bold 
