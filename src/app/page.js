@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import { useState, useEffect, useRef } from "react";
 import { Download, Upload, ArrowRight, Paintbrush, Brush } from "lucide-react";
 import { useRouter } from "next/navigation";
+
 export default function Home() {
   const [textColor, setTextColor] = useState("#1e1e2e");
   const [backgroundColor, setBackgroundColor] = useState("#FFFFFF");
@@ -32,6 +33,15 @@ export default function Home() {
 
     reader.readAsText(file);
   };
+
+  useEffect(() => {
+    if (!svgContent) {
+      fetch("/Illustration.svg")
+        .then((res) => res.text())
+        .then((text) => setSvgContent(text))
+        .catch((err) => console.error("SVG load failed:", err));
+    }
+  }, []);
 
   useEffect(() => {
     document.documentElement.classList.add("transition-colors", "duration-300");
@@ -229,7 +239,7 @@ export default function Home() {
               SVG Color Editor
             </div>
             <div className="flex justify-center gap-[3rem] text-md ">
-              <div className="flex flex-col gap-[1rem]">
+              <div className="flex flex-col gap-[2rem]">
                 <div className="flex flex-col gap-[.4rem]">
                   <h2 className="flex items-center text-[1.1rem]">
                     <Upload size={23} className="mr-2" />
@@ -277,8 +287,17 @@ export default function Home() {
                     </div>
                   )}
                 </div>
-                <div className="">
-                  <h2 className="text-[1.2rem]">Export</h2>
+                <div className="flex flex-col gap-[.5rem]">
+                  <h2 className="flex items-center text-[1.2rem] ">
+                    <Download size={20} className="mr-2" />
+                    Export
+                  </h2>
+                  <div
+                    onClick={exportSvg}
+                    className="bg-[#1E1E2E] w-[12rem] text-white text-[.87rem] flex justify-center rounded-[20px] py-[.3rem] cursor-pointer"
+                  >
+                    Download modified svg
+                  </div>
                 </div>
               </div>
 
