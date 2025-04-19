@@ -4,7 +4,7 @@ import ColorNavigation from "./components/ColorNavigation";
 import ColorSelectorIllustration from "./components/ColorSelectorIllustration";
 import Header from "./components/Header";
 import { useState, useEffect, useRef } from "react";
-import { Download, Upload, ArrowRight, Paintbrush } from "lucide-react";
+import { Download, Upload, ArrowRight, Paintbrush, Brush } from "lucide-react";
 import { useRouter } from "next/navigation";
 export default function Home() {
   const [textColor, setTextColor] = useState("#1e1e2e");
@@ -201,8 +201,8 @@ export default function Home() {
   return (
     <div className="page flex-col items-center justify-center">
       <Header style={styles.Header} />
-      <div className="MainPage mx-12 pt-17 flex justify-center items-center flex-col">
-        <div className="p1 flex justify-center items-center min-h-full">
+      <div className="MainPage pt-17 flex justify-center items-center flex-col">
+        <div className="p1 w-[100%] px-12 flex justify-center items-center min-h-full">
           <div className="p1-texts flex flex-col gap-3">
             <div
               className="p1-title flex justify-center items-center text-7xl font-bold 
@@ -220,57 +220,69 @@ export default function Home() {
             className="flex-shrink-0 h-auto"
           />
         </div>
-        <div className="p2 flex w-[100%] pt-[5rem]">
-          <div className="flex flex-col">
+        <div className="p2 min-h-[94vh] flex px-12 w-[100%] pt-[5rem] bg-gray-100">
+          <div className="flex flex-col w-[100%] gap-[1.5rem]">
             <div
-              className="p1-title flex items-center text-4xl font-bold 
+              className="p1-title flex items-center justify-center text-4xl font-bold 
             "
             >
               SVG Color Editor
             </div>
-            <div className="flex">
-              <div className="flex flex-col">
-                <h2 className="flex">
-                  <Upload size={20} className="mr-2" />
-                  Upload svg
-                </h2>
-                <div className="flex gap-[.5rem] items-center text-[.85rem]">
-                  <div
-                    className="insert-svg cursor-pointer bg-[#1E1E2E] w-[7rem] py-1 rounded-xl text-white flex justify-center items-center"
-                    onClick={() => fileInputRef.current.click()}
-                  >
-                    Insert Here
-                    <input
-                      ref={fileInputRef}
-                      type="file"
-                      accept=".svg"
-                      className="hidden"
-                      onChange={handleFileChange}
-                    />
+            <div className="flex justify-center gap-[3rem] text-md ">
+              <div className="flex flex-col gap-[1rem]">
+                <div className="flex flex-col gap-[.4rem]">
+                  <h2 className="flex items-center text-[1.1rem]">
+                    <Upload size={23} className="mr-2" />
+                    Upload svg
+                  </h2>
+                  <div className="flex gap-[.5rem] items-center text-[.85rem]">
+                    <div
+                      className="insert-svg cursor-pointer bg-[#1E1E2E] w-[7rem] py-1 rounded-xl text-white flex justify-center items-center"
+                      onClick={() => fileInputRef.current.click()}
+                    >
+                      Insert Here
+                      <input
+                        ref={fileInputRef}
+                        type="file"
+                        accept=".svg"
+                        className="hidden"
+                        onChange={handleFileChange}
+                      />
+                    </div>
+                    <span className="text-gray-400 ">{fileName}</span>
                   </div>
-                  <span className="text-gray-400 ">{fileName}</span>
                 </div>
-                {colors.length === 0 ? null : (
-                  <div className="grid grid-cols-5 gap-2 bg-gray-50 rounded-2xl p-2">
-                    {colors.map((colorObj, index) => (
-                      <div
-                        key={index}
-                        className="flex items-center justify-center p-2"
-                      >
-                        <input
-                          type="color"
-                          value={colorObj.newColor}
-                          onChange={(e) =>
-                            handleColorChange(index, e.target.value)
-                          }
-                          className="w-6 h-6 rounded-full cursor-pointer"
-                        />
-                      </div>
-                    ))}
-                  </div>
-                )}
+                <div className="">
+                  <h2 className="flex text-[1.2rem] items-center">
+                    <Brush size={20} className="mr-2" />
+                    <span>Colors</span>
+                  </h2>
+                  {colors.length === 0 ? null : (
+                    <div className="grid grid-cols-5 gap-2 bg-gray-50 rounded-2xl p-2">
+                      {colors.map((colorObj, index) => (
+                        <div
+                          key={index}
+                          className="flex items-center justify-center p-2"
+                        >
+                          <input
+                            type="color"
+                            value={colorObj.newColor}
+                            onChange={(e) =>
+                              handleColorChange(index, e.target.value)
+                            }
+                            className="w-6 h-6 rounded-full cursor-pointer"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+                <div className="">
+                  <h2 className="text-[1.2rem]">Export</h2>
+                </div>
               </div>
-              <div className="border border-gray-200 rounded p-4 bg-gray-50 flex items-center justify-center h-[400px] w-[500px] overflow-hidden">
+
+              <div className="border border-gray-200 rounded p-4 bg-gray-50 flex items-center justify-center h-[500px] w-[600px] overflow-hidden">
                 <div dangerouslySetInnerHTML={{ __html: previewSvg }} />
               </div>
             </div>
