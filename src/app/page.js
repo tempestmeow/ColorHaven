@@ -4,6 +4,7 @@ import ColorNavigation from "./components/ColorNavigation";
 import ColorSelectorIllustration from "./components/ColorSelectorIllustration";
 import Header from "./components/Header";
 import { useState, useEffect, useRef } from "react";
+import { Download, Upload, ArrowRight, Paintbrush } from "lucide-react";
 import { useRouter } from "next/navigation";
 export default function Home() {
   const [textColor, setTextColor] = useState("#1e1e2e");
@@ -16,6 +17,8 @@ export default function Home() {
   const fileInputRef = useRef(null);
   const [fileName, setFileName] = useState("");
   const [svgContent, setSvgContent] = useState("");
+  const [colors, setColors] = useState([]);
+  const [previewSvg, setPreviewSvg] = useState("");
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -54,7 +57,146 @@ export default function Home() {
     },
   };
 
-  // i did not use what's above, i realized that i just needed to change the entire html file itself.
+  useEffect(() => {
+    if (!svgContent) return;
+
+    const parser = new DOMParser();
+    const svgDoc = parser.parseFromString(svgContent, "image/svg+xml");
+
+    const coloredElements = [];
+    const allElements = svgDoc.querySelectorAll("*");
+
+    allElements.forEach((el) => {
+      const fill = el.getAttribute("fill");
+      const stroke = el.getAttribute("stroke");
+
+      if (fill && fill !== "none" && !fill.startsWith("url(")) {
+        if (
+          !coloredElements.some(
+            (item) => item.color === fill && item.type === "fill"
+          )
+        ) {
+          coloredElements.push({ element: el, color: fill, type: "fill" });
+        }
+      }
+
+      if (stroke && stroke !== "none" && !stroke.startsWith("url(")) {
+        if (
+          !coloredElements.some(
+            (item) => item.color === stroke && item.type === "stroke"
+          )
+        ) {
+          coloredElements.push({ element: el, color: stroke, type: "stroke" });
+        }
+      }
+
+      const style = el.getAttribute("style");
+      if (style) {
+        const fillMatch = style.match(/fill:\s*([^;]+)/);
+        if (
+          fillMatch &&
+          fillMatch[1] !== "none" &&
+          !fillMatch[1].startsWith("url(")
+        ) {
+          if (
+            !coloredElements.some(
+              (item) => item.color === fillMatch[1] && item.type === "fill"
+            )
+          ) {
+            coloredElements.push({
+              element: el,
+              color: fillMatch[1],
+              type: "fill",
+            });
+          }
+        }
+
+        const strokeMatch = style.match(/stroke:\s*([^;]+)/);
+        if (
+          strokeMatch &&
+          strokeMatch[1] !== "none" &&
+          !strokeMatch[1].startsWith("url(")
+        ) {
+          if (
+            !coloredElements.some(
+              (item) => item.color === strokeMatch[1] && item.type === "stroke"
+            )
+          ) {
+            coloredElements.push({
+              element: el,
+              color: strokeMatch[1],
+              type: "stroke",
+            });
+          }
+        }
+      }
+    });
+
+    const uniqueColors = [];
+    coloredElements.forEach((item) => {
+      const exists = uniqueColors.find(
+        (c) => c.originalColor === item.color && c.type === item.type
+      );
+      if (!exists) {
+        uniqueColors.push({
+          originalColor: item.color,
+          newColor: item.color,
+          type: item.type,
+        });
+      }
+    });
+
+    setColors(uniqueColors);
+    setPreviewSvg(svgContent);
+  }, [svgContent]);
+
+  useEffect(() => {
+    if (!svgContent || colors.length === 0) return;
+
+    let updatedSvg = svgContent;
+
+    colors.forEach((colorObj) => {
+      if (colorObj.originalColor === colorObj.newColor) return;
+
+      const { originalColor, newColor, type } = colorObj;
+
+      const attrRegex = new RegExp(
+        `${type}=["']${escapeRegExp(originalColor)}["']`,
+        "g"
+      );
+      updatedSvg = updatedSvg.replace(attrRegex, `${type}="${newColor}"`);
+
+      const styleRegex = new RegExp(
+        `${type}:\\s*${escapeRegExp(originalColor)}`,
+        "g"
+      );
+      updatedSvg = updatedSvg.replace(styleRegex, `${type}: ${newColor}`);
+    });
+
+    setPreviewSvg(updatedSvg);
+  }, [colors, svgContent]);
+
+  function escapeRegExp(string) {
+    return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  }
+
+  function handleColorChange(index, newColor) {
+    const updatedColors = [...colors];
+    updatedColors[index].newColor = newColor;
+    setColors(updatedColors);
+  }
+
+  function exportSvg() {
+    const blob = new Blob([previewSvg], { type: "image/svg+xml" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = fileName ? `modified_${fileName}` : "modified.svg";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
 
   return (
     <div className="page flex-col items-center justify-center">
@@ -92,6 +234,23 @@ export default function Home() {
               onChange={handleFileChange}
             />
           </div>
+          {colors.length === 0 ? null : (
+            <div className="grid grid-cols-5 gap-2 bg-gray-50 rounded-2xl p-2">
+              {colors.map((colorObj, index) => (
+                <div
+                  key={index}
+                  className="flex items-center justify-center p-2"
+                >
+                  <input
+                    type="color"
+                    value={colorObj.newColor}
+                    onChange={(e) => handleColorChange(index, e.target.value)}
+                    className="w-6 h-6 rounded-full cursor-pointer"
+                  />
+                </div>
+              ))}
+            </div>
+          )}
         </div>
         <div className="p2">sds</div>
         <div className="p2">sds</div>
