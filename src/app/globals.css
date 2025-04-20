@@ -146,11 +146,23 @@ input[type="color"]::-moz-color-swatch {
   .preview-container {
     height: 25rem;
   }
+
+  .editor-nav-container {
+    gap: 1rem;
+  }
+
+  .svg-edit-container {
+    padding-top: 5.3rem;
+  }
 }
 
 @media (max-width: 500px) {
   .preview-container {
     height: 70vw;
+  }
+  .svg-edit-container {
+    padding-top: 2rem;
+    margin-top: 4.3rem;
   }
 }
 
@@ -160,8 +172,24 @@ input[type="color"]::-moz-color-swatch {
   } */
 }
 
+.export-short {
+  display: none;
+}
+
 @media (max-width: 800px) {
   .p2-container {
     flex-direction: column;
+    gap: 1rem;
+  }
+
+  .export-short {
+    display: block;
+  }
+  .export-wide {
+    display: none;
+  }
+
+  .svg-edit-container {
+    padding-bottom: 2rem;
   }
 }

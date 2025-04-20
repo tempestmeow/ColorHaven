@@ -255,7 +255,7 @@ export default function Home() {
             />
           </div>
         </div>
-        <div className="p2 min-h-[94vh] flex px-12 w-[100%] pt-[5rem] bg-gray-100">
+        <div className="p2 min-h-[94vh] flex px-12 w-[100%] pt-[5rem] bg-gray-100 svg-edit-container">
           <div className="flex flex-col w-[100%] gap-[1.5rem]">
             <div
               className="p1-title flex items-center justify-center text-4xl font-bold 
@@ -264,7 +264,7 @@ export default function Home() {
               SVG Color Editor
             </div>
             <div className="p2-container flex justify-center gap-[3rem] text-md ">
-              <div className="flex flex-col gap-[2rem]">
+              <div className="flex flex-col gap-[2rem] editor-nav-container">
                 <div className="flex flex-col gap-[.4rem]">
                   <h2 className="flex items-center text-[1.1rem]">
                     <Upload size={23} className="mr-2" />
@@ -293,7 +293,7 @@ export default function Home() {
                     <span>Colors</span>
                   </h2>
                   {colors.length === 0 ? null : (
-                    <div className="grid grid-cols-5 gap-2 bg-gray-50 rounded-2xl p-2">
+                    <div className="grid grid-cols-4 gap-2 bg-gray-50 rounded-2xl p-2 place-items-center">
                       {colors.map((colorObj, index) => (
                         <div
                           key={index}
@@ -312,7 +312,7 @@ export default function Home() {
                     </div>
                   )}
                 </div>
-                <div className="flex flex-col gap-[.5rem]">
+                <div className="flex flex-col gap-[.5rem] export-wide">
                   <h2 className="flex items-center text-[1.2rem] ">
                     <Download size={20} className="mr-2" />
                     Export
@@ -325,13 +325,26 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-
-              <div className=" preview-container border border-gray-200 rounded p-4 bg-gray-50 flex items-center justify-center w-full max-w-[600px] h-auto">
-                <div className="w-full h-auto flex justify-center">
+              <div className="flex flex-col gap-[1rem] items-center">
+                <div className="preview-container border border-gray-200 rounded p-4 bg-gray-50 flex items-center justify-center w-full max-w-[600px] h-auto">
+                  <div className="w-full h-auto flex justify-center">
+                    <div
+                      className="w-full h-auto flex justify-center"
+                      dangerouslySetInnerHTML={{ __html: previewSvg }}
+                    />
+                  </div>
+                </div>
+                <div className="flex flex-col gap-[.5rem] export-short self-start">
+                  <h2 className="flex items-center text-[1.2rem] ">
+                    <Download size={20} className="mr-2" />
+                    Export
+                  </h2>
                   <div
-                    className="w-full h-auto flex justify-center"
-                    dangerouslySetInnerHTML={{ __html: previewSvg }}
-                  />
+                    onClick={exportSvg}
+                    className="bg-[#1E1E2E] w-[12rem] text-white text-[.87rem] text-center flex justify-center items-center rounded-[20px] py-[.3rem] cursor-pointer"
+                  >
+                    Download modified svg
+                  </div>
                 </div>
               </div>
             </div>
