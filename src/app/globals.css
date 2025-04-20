@@ -142,6 +142,22 @@ input[type="color"]::-moz-color-swatch {
   .p1-description {
     font-size: clamp(0.5rem, 4vw, 1rem);
   }
+
+  .preview-container {
+    height: 25rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .preview-container {
+    height: 70vw;
+  }
+}
+
+@media (max-width: 450px) {
+  /* .preview-container {
+    height: 17rem;
+  } */
 }
 
 @media (max-width: 800px) {

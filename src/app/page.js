@@ -72,9 +72,33 @@ export default function Home() {
 
     const parser = new DOMParser();
     const svgDoc = parser.parseFromString(svgContent, "image/svg+xml");
+    const svgElement = svgDoc.querySelector("svg");
 
-    const coloredElements = [];
     const allElements = svgDoc.querySelectorAll("*");
+    const coloredElements = [];
+
+    if (svgElement) {
+      if (
+        !svgElement.getAttribute("viewBox") &&
+        svgElement.getAttribute("width") &&
+        svgElement.getAttribute("height")
+      ) {
+        const width = parseFloat(svgElement.getAttribute("width"));
+        const height = parseFloat(svgElement.getAttribute("height"));
+        svgElement.setAttribute("viewBox", `0 0 ${width} ${height}`);
+      }
+
+      svgElement.removeAttribute("width");
+      svgElement.removeAttribute("height");
+      svgElement.setAttribute("width", "100%");
+      svgElement.setAttribute("height", "100%");
+      svgElement.setAttribute("preserveAspectRatio", "xMidYMid meet");
+    }
+
+    const serializer = new XMLSerializer();
+    const modifiedSvgContent = serializer.serializeToString(svgDoc);
+
+    setPreviewSvg(modifiedSvgContent);
 
     allElements.forEach((el) => {
       const fill = el.getAttribute("fill");
@@ -157,7 +181,6 @@ export default function Home() {
     });
 
     setColors(uniqueColors);
-    setPreviewSvg(svgContent);
   }, [svgContent]);
 
   useEffect(() => {
@@ -303,11 +326,13 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="border border-gray-200 rounded p-4 bg-gray-50 flex items-center justify-center max-h-[500px] max-w-[600px] overflow-hidden aspect-[6/5]">
-                <div
-                  className="max-w-full max-h-full"
-                  dangerouslySetInnerHTML={{ __html: previewSvg }}
-                />
+              <div className=" preview-container border border-gray-200 rounded p-4 bg-gray-50 flex items-center justify-center w-full max-w-[600px] h-auto">
+                <div className="w-full h-auto flex justify-center">
+                  <div
+                    className="w-full h-auto flex justify-center"
+                    dangerouslySetInnerHTML={{ __html: previewSvg }}
+                  />
+                </div>
               </div>
             </div>
           </div>
