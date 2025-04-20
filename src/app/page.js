@@ -225,10 +225,12 @@ export default function Home() {
               HEX, RGB, or CSS. Import images or SVGs to edit hues live.
             </div>
           </div>
-          <ColorSelectorIllustration
-            primaryColor={primaryColor}
-            className="flex-shrink-0 h-auto"
-          />
+          <div className="min-w-[320px]">
+            <ColorSelectorIllustration
+              primaryColor={primaryColor}
+              className="flex-shrink-0 h-full w-full "
+            />
+          </div>
         </div>
         <div className="p2 min-h-[94vh] flex px-12 w-[100%] pt-[5rem] bg-gray-100">
           <div className="flex flex-col w-[100%] gap-[1.5rem]">
@@ -238,7 +240,7 @@ export default function Home() {
             >
               SVG Color Editor
             </div>
-            <div className="flex justify-center gap-[3rem] text-md ">
+            <div className="p2-container flex justify-center gap-[3rem] text-md ">
               <div className="flex flex-col gap-[2rem]">
                 <div className="flex flex-col gap-[.4rem]">
                   <h2 className="flex items-center text-[1.1rem]">
@@ -280,7 +282,7 @@ export default function Home() {
                             onChange={(e) =>
                               handleColorChange(index, e.target.value)
                             }
-                            className="w-6 h-6 rounded-full cursor-pointer"
+                            className="min-w-6 min-h-6 max-w-6 max-h-6 rounded-full cursor-pointer"
                           />
                         </div>
                       ))}
@@ -301,8 +303,11 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="border border-gray-200 rounded p-4 bg-gray-50 flex items-center justify-center h-[500px] w-[600px] overflow-hidden">
-                <div dangerouslySetInnerHTML={{ __html: previewSvg }} />
+              <div className="border border-gray-200 rounded p-4 bg-gray-50 flex items-center justify-center max-h-[500px] max-w-[600px] overflow-hidden aspect-[6/5]">
+                <div
+                  className="max-w-full max-h-full"
+                  dangerouslySetInnerHTML={{ __html: previewSvg }}
+                />
               </div>
             </div>
           </div>

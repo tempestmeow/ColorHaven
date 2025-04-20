@@ -143,3 +143,9 @@ input[type="color"]::-moz-color-swatch {
     font-size: clamp(0.5rem, 4vw, 1rem);
   }
 }
+
+@media (max-width: 800px) {
+  .p2-container {
+    flex-direction: column;
+  }
+}
