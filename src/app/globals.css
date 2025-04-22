@@ -30,9 +30,6 @@ body {
   font-family: "Winky sans", sans-serif;
   font-size: 1.6rem;
   font-optical-sizing: auto;
-  @media (max-width: 420px) {
-    font-size: 1.7rem;
-  }
 }
 
 .toolsNav,
@@ -41,6 +38,21 @@ body {
   padding-bottom: 0.2rem;
   cursor: pointer;
   position: relative;
+}
+
+@media (max-width: 500px) {
+  .aboutNav {
+    display: none;
+  }
+
+  .headerIcon {
+    font-size: 1.5rem;
+  }
+
+  .headerNav {
+    font-size: 0.9rem;
+    padding-top: 0.2rem;
+  }
 }
 
 .toolsNav::after,

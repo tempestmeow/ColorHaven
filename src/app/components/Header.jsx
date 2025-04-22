@@ -8,8 +8,9 @@ export default function Header({ style }) {
     >
       <div className="headerIcon">Color Haven</div>
       <div className="headerNav flex gap-4 items-center">
+        <div className="toolsNav">Contact</div>
+        <div className="toolsNav">Editor</div>
         <div className="aboutNav">About</div>
-        <div className="toolsNav">Tools</div>
       </div>
     </div>
   );
