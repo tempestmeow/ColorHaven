@@ -8,6 +8,13 @@ import { Download, Upload, ArrowRight, Paintbrush, Brush } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const targetDiv = useRef(null);
+  const handleClick = () => {
+    targetDiv.current.scrollIntoView({
+      behaviour: "smooth",
+      block: "start",
+    });
+  };
   const [textColor, setTextColor] = useState("#1e1e2e");
   const [backgroundColor, setBackgroundColor] = useState("#FFFFFF");
   const [primaryColor, setPrimaryColor] = useState("#5314FF");
@@ -233,7 +240,11 @@ export default function Home() {
 
   return (
     <div className="page flex-col items-center justify-center">
-      <Header style={styles.Header} />
+      <Header
+        style={styles.Header}
+        targetDiv={targetDiv}
+        handleClick={handleClick}
+      />
       <div className="MainPage pt-15 flex justify-center items-center flex-col">
         <div className="p1 w-[100%] px-[7rem] flex justify-center items-center min-h-full">
           <div className="p1-texts flex flex-col gap-3">
@@ -255,7 +266,10 @@ export default function Home() {
             />
           </div>
         </div>
-        <div className="p2 min-h-[94vh] flex px-12 w-[100%] pt-[5rem] bg-gray-100 svg-edit-container">
+        <div
+          className="p2 min-h-[94vh] flex px-12 w-[100%] pt-[5rem] bg-gray-100 svg-edit-container"
+          ref={targetDiv}
+        >
           <div className="flex flex-col w-[100%] gap-[1.5rem]">
             <div
               className="p1-title flex items-center justify-center text-4xl font-bold 

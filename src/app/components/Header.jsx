@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Header({ style }) {
+export default function Header({ style, targetDiv, handleClick }) {
   return (
     <div
       className="header flex justify-between w-full fixed items-center transition-colors delay-50 "
@@ -9,7 +9,9 @@ export default function Header({ style }) {
       <div className="headerIcon">Color Haven</div>
       <div className="headerNav flex gap-4 items-center">
         <div className="toolsNav">Contact</div>
-        <div className="toolsNav">Editor</div>
+        <div className="toolsNav" onClick={handleClick}>
+          Editor
+        </div>
         <div className="aboutNav">About</div>
       </div>
     </div>
