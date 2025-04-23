@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import { useState, useEffect, useRef } from "react";
 import { Download, Upload, ArrowRight, Paintbrush, Brush } from "lucide-react";
 import { useRouter } from "next/navigation";
+import ContactForm from "./components/ContactForm";
 
 export default function Home() {
   const targetDiv = useRef(null);
@@ -365,6 +366,10 @@ export default function Home() {
           </div>
         </div>
 
+        <div className="p2">sds</div>
+
+        <ContactForm />
+        <div className="p2">sds</div>
         <div className="p2">sds</div>
         <div className="p2">sds</div>
         <div className="p2">sds</div>
