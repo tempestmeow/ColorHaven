@@ -334,3 +334,11 @@ input[type="color"]::-moz-color-swatch {
   background-color: rgba(244, 67, 54, 0.1);
   color: #c62828;
 }
+
+/* FOOTER */
+
+.contactLogos {
+  align-self: center;
+  display: flex;
+  gap: 3rem;
+}

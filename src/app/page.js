@@ -7,6 +7,7 @@ import { useState, useEffect, useRef } from "react";
 import { Download, Upload, ArrowRight, Paintbrush, Brush } from "lucide-react";
 import { useRouter } from "next/navigation";
 import ContactForm from "./components/ContactForm";
+import ContactLogos from "./components/ContactLogos";
 
 export default function Home() {
   const targetDiv = useRef(null);
@@ -240,7 +241,7 @@ export default function Home() {
   }
 
   return (
-    <div className="page flex-col items-center justify-center">
+    <div className="page flex-col items-center justify-center pb-[5rem]">
       <Header
         style={styles.Header}
         targetDiv={targetDiv}
@@ -366,17 +367,16 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="p2">sds</div>
-
-        <ContactForm />
-        <div className="p2">sds</div>
-        <div className="p2">sds</div>
-        <div className="p2">sds</div>
-        <div className="p2">sds</div>
-        <div className="p2">sds</div>
-        <div className="p2">sds</div>
-        <div className="p2">sds</div>
-        <div className="p2">sds</div>
+        <div className="w-full pt-[1.5rem] pb-[1rem]">
+          <ContactForm />
+        </div>
+        <div className="footer-block flex flex-col w-full justify-center items-center gap-[.5rem]">
+          <ContactLogos
+            primaryColor={textColor}
+            secondaryColor={secondaryColor}
+          />
+          <span className="tempestmeow">Made by tempestmeow⚡</span>
+        </div>
       </div>
       <ColorNavigation
         textColor={textColor}
