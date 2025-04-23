@@ -205,3 +205,132 @@ input[type="color"]::-moz-color-swatch {
     padding-bottom: 2rem;
   }
 }
+
+/* CONTACT FORM */
+
+@media (max-width: 940px) {
+  .colorIllustrator {
+    display: none;
+  }
+}
+
+.contact-main {
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: "Poppins", sans-serif;
+  color: black;
+}
+
+.form-title {
+  font-size: 1.9rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.input-container {
+  position: relative;
+  width: 100%;
+}
+
+.input-field,
+.textarea-field {
+  display: block;
+  width: 100%;
+  padding: 10px 10px 10px 15px;
+  font-size: 1rem;
+  font-weight: 520;
+  border: 0;
+  border-bottom: 2px solid rgba(14, 14, 14, 0.7);
+  border-radius: 4px;
+  outline: none;
+  background-color: transparent;
+}
+
+.textarea-field {
+  resize: vertical;
+  max-height: 100px;
+}
+
+.input-label {
+  position: absolute;
+  pointer-events: none;
+  top: 0.5rem;
+  left: 0.3rem;
+  font-size: 1rem;
+  color: rgb(53, 53, 53);
+  transition: all 0.5s ease-in;
+}
+
+.input-field:focus ~ .input-label,
+.input-field:valid ~ .input-label,
+.textarea-field:focus ~ .input-label,
+.textarea-field:valid ~ .input-label,
+.input-label.active {
+  font-size: 0.6rem;
+  padding: 0.3rem;
+  background-color: black;
+  border-radius: 8px;
+  color: white;
+  transform: translateX(-4px) translateY(-20px);
+}
+
+.input-field:focus,
+.input-field:valid,
+.textarea-field:focus,
+.textarea-field:valid {
+  border: 2px solid black;
+}
+
+.input-field.active-input:not(:focus),
+.textarea-field.active-input:not(:focus) {
+  border: 2px solid black;
+}
+
+.submit-button {
+  background-color: #27282f;
+  color: white;
+  padding: 0.5rem 0.3rem;
+  border: none;
+  border-radius: 32px;
+  font-size: 0.8rem;
+  font-weight: 650;
+  cursor: pointer;
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.8);
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #1a1b20;
+}
+
+.submit-button:disabled {
+  background-color: #6c6d76;
+  cursor: not-allowed;
+}
+
+.status-message {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.status-message.success {
+  background-color: rgba(76, 175, 80, 0.1);
+  color: #2e7d32;
+}
+
+.status-message.error {
+  background-color: rgba(244, 67, 54, 0.1);
+  color: #c62828;
+}

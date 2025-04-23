@@ -1,12 +1,21 @@
 "use client";
-import { useState, useEffect } from "react";
-
+import { useState } from "react";
+import ContactIllustrator from "./ContactIllustrator";
 export default function ContactForm() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     feedback: "",
   });
+  const [formStatus, setFormStatus] = useState({
+    message: "",
+    isSuccess: false,
+    isSubmitting: false,
+  });
+
+  const hasNameValue = formData.name.trim() !== "";
+  const hasEmailValue = formData.email.trim() !== "";
+  const hasFeedbackValue = formData.feedback.trim() !== "";
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -20,6 +29,8 @@ export default function ContactForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setFormStatus({ message: "", isSuccess: false, isSubmitting: true });
+
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
@@ -36,51 +47,113 @@ export default function ContactForm() {
 
       const result = await response.json();
       if (result.success) {
+        setFormStatus({
+          message: "Thank you! Your message has been submitted successfully.",
+          isSuccess: true,
+          isSubmitting: false,
+        });
+        setFormData({ name: "", email: "", feedback: "" });
       } else {
-        throw new Error(result.message || "Submit failed");
+        throw new Error(result.message || "Submission failed");
       }
-    } catch (error) {}
+    } catch (error) {
+      setFormStatus({
+        message: error.message || "Something went wrong. Please try again.",
+        isSuccess: false,
+        isSubmitting: false,
+      });
+    }
   };
 
-  useEffect(() => {
-    console.log(formData);
-  }, [formData]);
-
   return (
-    <>
-      <div className="form-container pt-[3rem]">
-        <form onSubmit={handleSubmit}>
-          <div className="name-input border-black border-4">
+    <div className="flex flex-row w-[80%] contact-main justify-around items-center">
+      <div className="contact-form-container">
+        <h2 className="form-title">Contact Me</h2>
+
+        {formStatus.message && (
+          <div
+            className={`status-message ${
+              formStatus.isSuccess ? "success" : "error"
+            }`}
+          >
+            {formStatus.message}
+          </div>
+        )}
+
+        <form onSubmit={handleSubmit} className="contact-form">
+          <div className="input-container">
             <input
               type="text"
               id="name"
               name="name"
               value={formData.name}
               onChange={handleChange}
+              required
+              className={
+                hasNameValue ? "input-field active-input" : "input-field"
+              }
             />
+            <span
+              className={hasNameValue ? "input-label active" : "input-label"}
+            >
+              Name
+            </span>
           </div>
-          <div className="email-input border-black border-4">
+
+          <div className="input-container">
             <input
-              type="text"
+              type="email"
               id="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
+              required
+              className={
+                hasEmailValue ? "input-field active-input" : "input-field"
+              }
             />
+            <span
+              className={hasEmailValue ? "input-label active" : "input-label"}
+            >
+              Email
+            </span>
           </div>
-          <div className="feedback-input border-black border-4">
-            <input
-              type="text"
+
+          <div className="input-container">
+            <textarea
               id="feedback"
               name="feedback"
               value={formData.feedback}
               onChange={handleChange}
+              required
+              rows="4"
+              className={
+                hasFeedbackValue
+                  ? "textarea-field active-input"
+                  : "textarea-field"
+              }
             />
+            <span
+              className={
+                hasFeedbackValue ? "input-label active" : "input-label"
+              }
+            >
+              Message
+            </span>
           </div>
 
-          <button type="submit">Submit </button>
+          <button
+            type="submit"
+            disabled={formStatus.isSubmitting}
+            className="submit-button"
+          >
+            {formStatus.isSubmitting ? "Submitting..." : "Submit"}
+          </button>
         </form>
       </div>
-    </>
+      <div className="min-w-[320px] colorIllustrator">
+        <ContactIllustrator className="flex-shrink-0 h-full w-full " />
+      </div>
+    </div>
   );
 }

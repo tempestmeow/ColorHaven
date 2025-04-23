@@ -257,7 +257,7 @@ export default function Home() {
             </div>
             <div className="p1-description text-md font-medium flex justify-center items-center ">
               Play with pigments to match your creative energy. Export colors as
-              HEX, RGB, or CSS. Import images or SVGs to edit hues live.
+              HEX, RGB, or CSS. Import SVGs to edit hues live.
             </div>
           </div>
           <div className="min-w-[320px]">
