@@ -246,6 +246,7 @@ export default function Home() {
         style={styles.Header}
         targetDiv={targetDiv}
         handleClick={handleClick}
+        darkMode={darkMode}
       />
       <div className="MainPage pt-15 flex justify-center items-center flex-col">
         <div className="p1 w-[100%] px-[7rem] flex justify-center items-center min-h-[94vh]">

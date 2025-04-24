@@ -69,6 +69,11 @@ body {
   border-radius: 50px;
 }
 
+.dark-header::after,
+.dark-header::after {
+  background-color: #ffffff;
+}
+
 .toolsNav:hover::after,
 .aboutNav:hover::after {
   width: 90%;
@@ -181,6 +186,10 @@ input[type="color"]::-moz-color-swatch {
     padding-top: 4rem;
     padding-bottom: unset;
     min-height: 85vh;
+  }
+
+  .MainPage {
+    padding-top: 2rem;
   }
 
   .p1-description {
