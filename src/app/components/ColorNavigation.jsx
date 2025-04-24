@@ -104,7 +104,7 @@ export default function ColorNavigation({
 
   const styles = {
     colorSelector: {
-      backgroundColor: darkMode ? "#1e1e2e" : "#FFFFFF",
+      backgroundColor: darkMode ? "#303041" : "#FFFFFF",
       color: darkMode ? "#FFFFFF" : "#000000",
       padding: "8px 12px",
       borderRadius: "8px",

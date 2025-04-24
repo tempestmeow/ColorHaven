@@ -274,7 +274,7 @@ export default function Home() {
         >
           <div className="flex flex-col w-[100%] gap-[1.5rem]">
             <div
-              className="p1-title flex items-center justify-center text-4xl font-bold 
+              className="p1-title flex items-center justify-center text-4xl font-bold text-[#1E1E2E]
             "
             >
               SVG Color Editor
@@ -282,7 +282,7 @@ export default function Home() {
             <div className="p2-container flex justify-center gap-[3rem] text-md ">
               <div className="flex flex-col gap-[2rem] editor-nav-container">
                 <div className="flex flex-col gap-[.4rem]">
-                  <h2 className="flex items-center text-[1.1rem]">
+                  <h2 className="flex items-center text-[1.1rem] text-[#1E1E2E]">
                     <Upload size={23} className="mr-2" />
                     Upload svg
                   </h2>
@@ -304,8 +304,8 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="">
-                  <h2 className="flex text-[1.2rem] items-center">
-                    <Brush size={20} className="mr-2" />
+                  <h2 className="flex text-[1.2rem] items-center text-[#1E1E2E]">
+                    <Brush size={20} className="mr-2 " />
                     <span>Colors</span>
                   </h2>
                   {colors.length === 0 ? null : (
@@ -328,10 +328,10 @@ export default function Home() {
                     </div>
                   )}
                 </div>
-                <div className="flex flex-col gap-[.5rem] export-wide">
-                  <h2 className="flex items-center text-[1.2rem] ">
+                <div className="flex flex-col gap-[.5rem] export-wide text-[#1E1E2E]">
+                  <h2 className="flex items-center text-[1.2rem] text-[#1E1E2E]">
                     <Download size={20} className="mr-2" />
-                    Export
+                    <span className="text-[#1E1E2E]">Export</span>
                   </h2>
                   <div
                     onClick={exportSvg}
