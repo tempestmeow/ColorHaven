@@ -11,8 +11,8 @@ export default function Header({ style, handleClick, darkMode }) {
         <div
           className={
             darkMode
-              ? "toolsNav cursor-pointer dark-header"
-              : "toolsNav cursor-pointer"
+              ? "contactNav cursor-pointer dark-header"
+              : "contactNav cursor-pointer"
           }
           onClick={() => handleClick(".p1")}
         >
@@ -21,8 +21,8 @@ export default function Header({ style, handleClick, darkMode }) {
         <div
           className={
             darkMode
-              ? "toolsNav cursor-pointer dark-header"
-              : "toolsNav cursor-pointer"
+              ? "editNav cursor-pointer dark-header"
+              : "editNav cursor-pointer"
           }
           onClick={() => handleClick(".p2")}
         >

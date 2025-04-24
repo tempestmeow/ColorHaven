@@ -32,7 +32,8 @@ body {
   font-optical-sizing: auto;
 }
 
-.toolsNav,
+.editNav,
+.contactNav,
 .aboutNav {
   padding-top: 0.2rem;
   padding-bottom: 0.2rem;
@@ -41,7 +42,7 @@ body {
 }
 
 @media (max-width: 500px) {
-  .aboutNav {
+  .contactNav {
     display: none;
   }
 
@@ -55,7 +56,8 @@ body {
   }
 }
 
-.toolsNav::after,
+.editNav::after,
+.contactNav::after,
 .aboutNav::after {
   content: "";
   position: absolute;
@@ -74,7 +76,8 @@ body {
   background-color: #ffffff;
 }
 
-.toolsNav:hover::after,
+.editNav:hover::after,
+.contactNav:hover::after,
 .aboutNav:hover::after {
   width: 90%;
 }
@@ -374,4 +377,10 @@ input[type="color"]::-moz-color-swatch {
   align-self: center;
   display: flex;
   gap: 3rem;
+}
+
+@media (max-width: 370px) {
+  .p1 {
+    padding-top: 0rem;
+  }
 }
