@@ -10,12 +10,14 @@ import ContactForm from "./components/ContactForm";
 import ContactLogos from "./components/ContactLogos";
 
 export default function Home() {
-  const targetDiv = useRef(null);
-  const handleClick = () => {
-    targetDiv.current.scrollIntoView({
-      behaviour: "smooth",
-      block: "start",
-    });
+  const handleClick = (target) => {
+    const targetElement = document.querySelector(target);
+    if (targetElement) {
+      targetElement.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
   };
   const [textColor, setTextColor] = useState("#1e1e2e");
   const [backgroundColor, setBackgroundColor] = useState("#FFFFFF");
@@ -244,7 +246,6 @@ export default function Home() {
     <div className="page flex-col items-center justify-center pb-[5rem]">
       <Header
         style={styles.Header}
-        targetDiv={targetDiv}
         handleClick={handleClick}
         darkMode={darkMode}
       />
@@ -269,10 +270,7 @@ export default function Home() {
             />
           </div>
         </div>
-        <div
-          className="p2 min-h-[94vh] flex px-12 w-[100%] pt-[5rem] bg-gray-100 svg-edit-container"
-          ref={targetDiv}
-        >
+        <div className="p2 min-h-[94vh] flex px-12 w-[100%] pt-[5rem] bg-gray-100 svg-edit-container">
           <div className="flex flex-col w-[100%] gap-[1.5rem]">
             <div
               className="p1-title flex items-center justify-center text-4xl font-bold text-[#1E1E2E]

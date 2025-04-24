@@ -1,9 +1,9 @@
 import React from "react";
 
-export default function Header({ style, targetDiv, handleClick, darkMode }) {
+export default function Header({ style, handleClick, darkMode }) {
   return (
     <div
-      className="header flex justify-between w-full fixed items-center transition-colors delay-50 "
+      className="header flex justify-between w-full fixed items-center transition-colors delay-50"
       style={style}
     >
       <div className="headerIcon">Color Haven</div>
@@ -14,6 +14,7 @@ export default function Header({ style, targetDiv, handleClick, darkMode }) {
               ? "toolsNav cursor-pointer dark-header"
               : "toolsNav cursor-pointer"
           }
+          onClick={() => handleClick(".p1")}
         >
           Contact
         </div>
@@ -23,7 +24,7 @@ export default function Header({ style, targetDiv, handleClick, darkMode }) {
               ? "toolsNav cursor-pointer dark-header"
               : "toolsNav cursor-pointer"
           }
-          onClick={handleClick}
+          onClick={() => handleClick(".p2")}
         >
           Editor
         </div>
@@ -33,6 +34,7 @@ export default function Header({ style, targetDiv, handleClick, darkMode }) {
               ? "aboutNav cursor-pointer dark-header"
               : "aboutNav cursor-pointer"
           }
+          onClick={() => handleClick(".contact-main")}
         >
           About
         </div>
